@@ -1,0 +1,67 @@
+#board {
+  width: 700px;
+  height: 600px;
+  border: 2px solid black;
+}
+
+.column {
+  width: 97px;
+  border-right: inset 3px black;
+  height: 600px;
+  float: left;
+  position: relative;
+}
+
+.column:hover {
+  opacity: .5;
+  background: #124391;
+  cursor: pointer;
+}
+
+.column.last {
+  border: none;
+}
+
+.row {
+  position: absolute;
+}
+
+.row.one {
+  top: 500px;
+}
+.row.two {
+  top: 400px;
+}
+.row.three {
+  top: 300px
+}
+.row.four {
+  top: 200px;
+}
+.row.five {
+  top: 100px;
+}
+.row.six {
+  top: 0px;
+}
+
+a.square {
+  display: block;
+  width: 99px;
+  border-top: 1px solid black;
+  height: 99px;
+}
+
+.red {
+  border-radius: 50px;
+  background: #FF0000;
+}
+
+.blue {
+  border-radius: 50px;
+  background: blue;
+}
+
+#player {
+  text-transform: capitalize;
+}
