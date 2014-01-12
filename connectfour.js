@@ -2,7 +2,7 @@ var c4 = {};
 var board = [];
 var game = {};
 game.moves = 0;
-game.player = 'red';
+game.player = 0;
 
 c4.init = function() {
     game.x = 7;
@@ -12,11 +12,10 @@ c4.init = function() {
         var x = [];
         board[i] = x;
     }
-    return board;
 }
 
 c4.interact = function(){
-    var board = c4.init();
+    c4.init();
     var $column = $('.column');
 
     var index;
@@ -27,10 +26,11 @@ c4.interact = function(){
         var square = c4.dropChip(board, index);
         // @todo move to a function: update labels
         if(square !== undefined){
-            console.log(square);
+            c4.renderChip(index, square, game.player);
+            c4.scanBoard(index, square);
             c4.playerToggle();
-            c4.renderChip(index, square);
             c4.updateLabels();
+            //c4.scanBoard(index, square);
         }
 
     });
@@ -47,20 +47,42 @@ c4.dropChip = function(board, index) {
 }
 
 c4.playerToggle = function () {
-    if(game.moves%2==0){
-        game.player = 'red';
-    } else {
-        game.player = 'blue';
-    }
-    game.moves++;
+    if(game.player===0)
+        game.player=1;
+    else
+        game.player=0;
 }
 
-c4.scanBoard = function(){
+c4.scanBoard = function(x, y){
     // FIFO -> LIFO
     var newBoard = [];
-
     for(var i = 0; i < board.length-1; i++) {
         newBoard[i] = board[i].reverse();
     }
-    console.log(newBoard);
+
+
+    checkVertical(x,y);
+    function checkVertical(x, y) {
+        if(y<3)
+            return;
+        else {
+            for(var i = 0; i < 4; i++){
+                console.log(board[x][i]);
+            }
+        }
+    }
+}
+
+
+// Randomly add chips. @todo move to test class
+c4.test = function() {
+    for(var z = 0; z < 30; z++ ){
+        var randex = Math.floor((Math.random()*7));
+        var square = c4.dropChip(board, randex);
+        if(square !== undefined){
+            c4.renderChip(randex, square, game.player);
+            c4.playerToggle();
+            c4.updateLabels();
+        }
+    }
 }
