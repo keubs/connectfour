@@ -62,12 +62,45 @@ c4.scanBoard = function(x, y){
 
 
     checkVertical(x,y);
+    checkHorizontal(x,y);
+    function checkHorizontal(x,y) {
+        var currentPlayer = game.player;
+        try{
+            if(board[x-1][y]==currentPlayer) {
+                if(board[x-2][y]==currentPlayer) {
+                    if(board[x-3][y]==currentPlayer) {
+                        var r=confirm(c4.convertValue(game.player) + ' wins!');
+                    }
+                }
+            }
+
+            if(board[x+1][y]==currentPlayer)
+                alert('right');
+        } catch (Exception) {
+
+        }
+
+    }
     function checkVertical(x, y) {
         if(y<3)
             return;
         else {
+            var output = '';
             for(var i = 0; i < 4; i++){
-                console.log(board[x][i]);
+                output += board[x][i].toString();
+                if(output=='1111' || output == '0000') {
+                    var r=confirm(c4.convertValue(game.player) + ' wins!');
+                    console.log(board);
+                    if (r==true)
+                    {
+                        c4.reset();
+                    }
+                    else
+                    {
+                        alert("You pressed Cancel!");
+                    }
+
+                }
             }
         }
     }
@@ -85,4 +118,13 @@ c4.test = function() {
             c4.updateLabels();
         }
     }
+}
+c4.reset = function() {
+    board = [];
+    $('.row').each(function(){
+       $(this).removeClass('red');
+       $(this).removeClass('blue');
+    });
+
+    c4.init();
 }
