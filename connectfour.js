@@ -3,6 +3,7 @@ var board = [];
 var game = {};
 game.moves = 0;
 game.player = 0;
+game.ptw = 4 // "pieces to win"
 
 c4.init = function() {
     game.x = 7;
@@ -37,6 +38,7 @@ c4.interact = function(){
 }
 
 c4.dropChip = function(board, index) {
+
     if(board[index].length>=game.y)
         return;
     else {
@@ -54,55 +56,36 @@ c4.playerToggle = function () {
 }
 
 c4.scanBoard = function(x, y){
-    checkVertical(x,y);
-    checkHorizontal(x,y);
-    function checkHorizontal(x,y) {
-        var currentPlayer = game.player;
-        try{
-            // Drop the chip, check to the left
-            if(board[x-1][y]==currentPlayer) {
-                if(board[x-2][y]==currentPlayer) {
-                    if(board[x-3][y]==currentPlayer) {
-                        alert('win');
-                    }
-                }
-            }
 
-            // Drop the chip, check to the right
-            if(board[x+1][y]==currentPlayer) {
-                if(board[x+2][y]==currentPlayer) {
-                    if(board[x+3][y]==currentPlayer) {
-                        alert('win');
-                    }
-                }
-            }
+    var v = checkVertical(x,y);
 
-        } catch (err) {
-            console.log(err);
-        }
+    if(v) {
+        alert('win vertical');
     }
-    function checkVertical(x, y) {
-        if(y<3)
-            return;
-        else {
-            var output = '';
-            for(var i = 0; i < 4; i++){
-                if(board[x][i])
-                    output += board[x][i].toString();
-                if(output=='1111' || output == '0000') {
-                    var r=confirm(c4.convertValue(game.player) + ' wins!');
-                    if (r==true)
-                    {
-                        c4.reset();
-                    }
-                    else
-                    {
-                        alert("You pressed Cancel!");
-                    }
+
+
+    // check the 3 chips below your current chip and if they all match, booya.
+    function checkVertical(x, y){
+        //need more than four to win
+        if(y<game.ptw-1) {
+            return false
+        } else {
+            // We don't need to check pieces up, pieces drop in from above
+            for(var i=0;i<game.ptw;i++){
+                if(i==game.ptw-1) {
+                    return true;
+                }
+                if(board[x][y-i] == game.player) {
+                    continue;
+                } else {
+                    break;
                 }
             }
         }
+        return false;
     }
+
+
 }
 
 
