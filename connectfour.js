@@ -69,9 +69,10 @@ c4.scanBoard = function(x, y){
         c4.showWinMessage();
     }
 
-    // check the 3 chips below your current chip and if they all match, booya.
+    // Check the 3 chips below your current chip and if they all match, booya.
     function checkVertical(x, y) {
-        //need more than four to win
+
+        //may as well check if it's tall enough first
         if(y<game.ptw-1) {
             return false
         } else {
@@ -90,6 +91,8 @@ c4.scanBoard = function(x, y){
         return false;
     }
 
+
+    // Counts the amount of east/west chips the same as the current chip
     function checkHorizontal(x, y) {
         try {
             // West
@@ -127,6 +130,7 @@ c4.scanBoard = function(x, y){
     }
 
 
+    // builds a count of chips on if the northwest/southwest/northeast/southeast chip is the same as the dropped chip
     // @todo eliminate the possibility of two southwest chips and one southeast chip indicating a win
     function checkDiagonal(x,y) {
         try {
@@ -194,6 +198,7 @@ c4.scanBoard = function(x, y){
         return false;
     }
 
+    // Check that reference cell of the board exists
     function isInBounds(x, y) {
         try {
             if(board[x][y]!==undefined) {
