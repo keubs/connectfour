@@ -5,7 +5,7 @@ c4.renderChip = function(col, row, player){
 }
 
 c4.updateLabels = function(){
-    $('#player').html(game.player);
+    $('#player').html(c4.convertValue(game.player));
     $('#moves').html(game.moves);
 }
 
