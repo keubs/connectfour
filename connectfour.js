@@ -30,7 +30,7 @@ c4.interact = function(){
             c4.scanBoard(index, square);
             c4.playerToggle();
             c4.updateLabels();
-            //c4.scanBoard(index, square);
+            c4.scanBoard(index, square);
         }
 
     });
@@ -54,32 +54,32 @@ c4.playerToggle = function () {
 }
 
 c4.scanBoard = function(x, y){
-    // FIFO -> LIFO
-    var newBoard = [];
-    for(var i = 0; i < board.length-1; i++) {
-        newBoard[i] = board[i].reverse();
-    }
-
-
     checkVertical(x,y);
     checkHorizontal(x,y);
     function checkHorizontal(x,y) {
         var currentPlayer = game.player;
         try{
+            // Drop the chip, check to the left
             if(board[x-1][y]==currentPlayer) {
                 if(board[x-2][y]==currentPlayer) {
                     if(board[x-3][y]==currentPlayer) {
-                        var r=confirm(c4.convertValue(game.player) + ' wins!');
+                        alert('win');
                     }
                 }
             }
 
-            if(board[x+1][y]==currentPlayer)
-                alert('right');
-        } catch (Exception) {
+            // Drop the chip, check to the right
+            if(board[x+1][y]==currentPlayer) {
+                if(board[x+2][y]==currentPlayer) {
+                    if(board[x+3][y]==currentPlayer) {
+                        alert('win');
+                    }
+                }
+            }
 
+        } catch (err) {
+            console.log(err);
         }
-
     }
     function checkVertical(x, y) {
         if(y<3)
@@ -87,10 +87,10 @@ c4.scanBoard = function(x, y){
         else {
             var output = '';
             for(var i = 0; i < 4; i++){
-                output += board[x][i].toString();
+                if(board[x][i])
+                    output += board[x][i].toString();
                 if(output=='1111' || output == '0000') {
                     var r=confirm(c4.convertValue(game.player) + ' wins!');
-                    console.log(board);
                     if (r==true)
                     {
                         c4.reset();
@@ -99,7 +99,6 @@ c4.scanBoard = function(x, y){
                     {
                         alert("You pressed Cancel!");
                     }
-
                 }
             }
         }
@@ -114,8 +113,10 @@ c4.test = function() {
         var square = c4.dropChip(board, randex);
         if(square !== undefined){
             c4.renderChip(randex, square, game.player);
+            c4.scanBoard(randex, square);
             c4.playerToggle();
             c4.updateLabels();
+            c4.scanBoard(randex, square);
         }
     }
 }
