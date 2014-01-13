@@ -66,7 +66,7 @@ c4.scanBoard = function(x, y){
     d = checkDiagonal(x,y);
 
     if(v==true||h==true||d===true) {
-        console.log(c4.convertValue(game.player) + " wins!");
+        c4.showWinMessage();
     }
 
     // check the 3 chips below your current chip and if they all match, booya.
@@ -126,6 +126,8 @@ c4.scanBoard = function(x, y){
         }
     }
 
+
+    // @todo eliminate the possibility of two southwest chips and one southeast chip indicating a win
     function checkDiagonal(x,y) {
         try {
             // initialize at one. the dropped chip counts as one

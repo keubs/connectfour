@@ -1,7 +1,12 @@
+h1,h2,h3 {
+  text-align: center;
+}
+
 #board {
   width: 700px;
   height: 600px;
   border: 2px solid black;
+  margin: 0 auto;
 }
 
 .column {
