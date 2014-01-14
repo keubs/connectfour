@@ -28,10 +28,7 @@ c4.interact = function(){
         // @todo move to a function: update labels
         if(square !== undefined){
             c4.renderChip(index, square, game.player);
-            c4.scanBoard(index, square);
-            c4.playerToggle();
-            c4.updateLabels();
-            c4.scanBoard(index, square);
+            c4.scanBoard(index, square, game.player);
         }
 
     });
@@ -56,7 +53,7 @@ c4.playerToggle = function () {
         game.player=0;
 }
 
-c4.scanBoard = function(x, y){
+c4.scanBoard = function(x, y, player){
 
     var v = false;
     v = checkVertical(x,y);
@@ -66,7 +63,11 @@ c4.scanBoard = function(x, y){
     d = checkDiagonal(x,y);
 
     if(v==true||h==true||d===true) {
-        c4.showWinMessage();
+        c4.showWinMessage(player);
+        c4.reset();
+    } else {
+        c4.playerToggle();
+        c4.updateLabels();
     }
 
     // Check the 3 chips below your current chip and if they all match, booya.
@@ -77,8 +78,9 @@ c4.scanBoard = function(x, y){
             return false
         } else {
             // We don't need to check pieces up, pieces drop in from above
-            for(var i=0;i<game.ptw;i++){
-                if(i==game.ptw-1) {
+            for(var i=1;i<game.ptw+1;i++){
+                if(i==game.ptw) {
+                    console.log("win recorded at " + x + ", " + y + ". Counter at " + i);
                     return true;
                 }
                 if(board[x][y-i] == game.player) {
@@ -213,21 +215,6 @@ c4.scanBoard = function(x, y){
     }
 }
 
-
-// Randomly add chips. @todo move to test class
-c4.test = function() {
-    for(var z = 0; z < 30; z++ ){
-        var randex = Math.floor((Math.random()*7));
-        var square = c4.dropChip(board, randex);
-        if(square !== undefined){
-            c4.renderChip(randex, square, game.player);
-            c4.scanBoard(randex, square);
-            c4.playerToggle();
-            c4.updateLabels();
-            c4.scanBoard(randex, square);
-        }
-    }
-}
 c4.reset = function() {
     board = [];
     $('.row').each(function(){
@@ -235,5 +222,6 @@ c4.reset = function() {
         $(this).removeClass('blue');
     });
 
+    c4.moves = 0;
     c4.init();
 }
