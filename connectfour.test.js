@@ -27,6 +27,20 @@ c4t.verticalTest = function() {
     c4t.runBatch(columns);
 }
 
+c4t.diagonalTestNWSE = function() {
+    // this should yield a blue player winning diagonally from northwest to southeast
+    var columns = [1,1,1,1,2,2,0,2,6,4,5,0,5,3,6,3];
+
+    c4t.runBatch(columns);
+}
+
+c4t.diagonalTestNESW = function() {
+    // this should yield a blue player winning diagonally from southwest to northeast
+    var columns = [1,2,2,4,4,3,3,4,4,0,3];
+
+    c4t.runBatch(columns);
+}
+
 
 // Runs batch of clicks based in hardcoded array
 c4t.runBatch = function(columns) {
@@ -35,7 +49,7 @@ c4t.runBatch = function(columns) {
         var index = columns[i];
         var square = c4.dropChip(board, index);
         if(square !==undefined){
-            console.log("Chip Dropped at " + index + "," + square);
+            console.log("Chip Dropped at " + index + "," + square + " by " + c4.convertValue(game.player) + " player");
             c4.renderChip(index, square, game.player);
             c4.scanBoard(index, square);
         }

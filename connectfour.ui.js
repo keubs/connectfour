@@ -16,10 +16,10 @@ c4.convertValue = function(val){
         return 'blue';
 }
 
-c4.showWinMessage = function () {
+c4.showWinMessage = function (player) {
     $('#board').unbind('click');
     $('#playerlabel').fadeOut(function(){
-        $('#playerlabel').html(c4.convertValue(game.player) + ' player wins!');
+        $('#playerlabel').html(c4.convertValue(player) + ' player wins!');
         $('#playerlabel').fadeIn();
     })
 }
