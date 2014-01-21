@@ -46,3 +46,139 @@ function checkVertical(x, y) {
         }
     }
 }
+
+
+//my old chip checker methods
+// Check the 3 chips below your current chip and if they all match, booya.
+function checkVertical(x, y) {
+
+    //may as well check if it's tall enough first
+    if(y<game.ptw-1) {
+        return false
+    } else {
+        // We don't need to check pieces up, pieces drop in from above
+        for(var i=1;i<game.ptw+1;i++){
+            if(i==game.ptw) {
+                console.log("win recorded at " + x + ", " + y + ". Counter at " + i);
+                return true;
+            }
+            if(board[x][y-i] == game.player) {
+                continue;
+            } else {
+                break;
+            }
+        }
+    }
+    return false;
+}
+
+
+// Counts the amount of east/west chips the same as the current chip
+function checkHorizontal(x, y) {
+    try {
+        // West
+        var counter = 1;
+        for(var i = 1; i < game.ptw; i++) {
+            if(isInBounds(x-i,y)) {
+                if(board[x-i][y] == game.player) {
+                    counter++;
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y + ". Counter at " + counter); return true; }
+
+        // East
+        for(var i = 1; i < game.ptw; i++) {
+            if(isInBounds(x+i,y)) {
+                if(board[x+i][y] == game.player) {
+                    counter++;
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y + ". Counter at " + counter); return true; }
+        return false;
+    } catch (err) {
+    }
+}
+
+
+// builds a count of chips on if the northwest/southwest/northeast/southeast chip is the same as the dropped chip
+// @todo eliminate the possibility of two southwest chips and one southeast chip indicating a win
+//northwest-southeast
+function checkDiagonalNWSE(x,y) {
+    var counter = 1;
+    // northwest
+    for(var i = 1; i < game.ptw; i++) {
+        if(isInBounds(x-i,y+i)) {
+            if(board[x-i][y+i] == game.player) {
+                counter++;
+                continue;
+            }
+            else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+    if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
+
+    // southeast
+    for(var i = 1; i < game.ptw; i++) {
+        if(counter>=game.ptw)
+            return true;
+        if(isInBounds(x+i,y-i)) {
+            if(board[x+i][y-i] == game.player) {
+                counter++;
+                continue;
+            }
+            else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+
+    if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
+}
+function checkDiagonalNESW(x,y) {
+    var counter = 1;
+    // southwest
+    for(var i = 1; i < game.ptw; i++) {
+        if(isInBounds(x-i,y-i)) {
+            if(board[x-i][y-i] == game.player) {
+                counter++;
+                continue;
+            }
+            else {
+                break;
+            }
+        } else {
+            break;
+        }
+    }
+    if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
+
+    // northeast
+    for(var i = 1; i < game.ptw; i++) {
+        if(isInBounds(x+i,y+i)) {
+            if(board[x+i][y+i] == game.player) {
+                counter++;
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
+
+}

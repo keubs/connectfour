@@ -55,157 +55,37 @@ c4.playerToggle = function () {
 
 c4.scanBoard = function(x, y, player){
 
-    var v = false;
-    v = checkVertical(x,y);
-    var h = false;
-    h = checkHorizontal(x,y);
-    var d = false;
-    d1 = checkDiagonalNESW(x,y);
-    d2 = checkDiagonalNWSE(x,y)
-    if(v==true||h==true||d1===true||d2===true) {
+    var move = false;
+    move = c4.checkRange(x, y);
+
+    if(move) {
         console.log("win is by player " + game.player)
         c4.showWinMessage(player);
     } else {
         c4.playerToggle();
         c4.updateLabels();
     }
-
-    // Check the 3 chips below your current chip and if they all match, booya.
-    function checkVertical(x, y) {
-
-        //may as well check if it's tall enough first
-        if(y<game.ptw-1) {
-            return false
-        } else {
-            // We don't need to check pieces up, pieces drop in from above
-            for(var i=1;i<game.ptw+1;i++){
-                if(i==game.ptw) {
-                    console.log("win recorded at " + x + ", " + y + ". Counter at " + i);
-                    return true;
-                }
-                if(board[x][y-i] == game.player) {
-                    continue;
-                } else {
-                    break;
-                }
-            }
-        }
-        return false;
-    }
-
-
-    // Counts the amount of east/west chips the same as the current chip
-    function checkHorizontal(x, y) {
-        try {
-            // West
-            var counter = 1;
-            for(var i = 1; i < game.ptw; i++) {
-                if(isInBounds(x-i,y)) {
-                    if(board[x-i][y] == game.player) {
-                        counter++;
-                        continue;
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y + ". Counter at " + counter); return true; }
-
-            // East
-            for(var i = 1; i < game.ptw; i++) {
-                if(isInBounds(x+i,y)) {
-                    if(board[x+i][y] == game.player) {
-                        counter++;
-                    }
-                    else {
-                        break;
-                    }
-                }
-            }
-            if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y + ". Counter at " + counter); return true; }
-            return false;
-        } catch (err) {
-        }
-    }
-
-
-    // builds a count of chips on if the northwest/southwest/northeast/southeast chip is the same as the dropped chip
-    // @todo eliminate the possibility of two southwest chips and one southeast chip indicating a win
-    //northwest-southeast
-    function checkDiagonalNWSE(x,y) {
-        var counter = 1;
-        // northwest
-        for(var i = 1; i < game.ptw; i++) {
-            if(isInBounds(x-i,y+i)) {
-                if(board[x-i][y+i] == game.player) {
-                    counter++;
-                    continue;
-                }
-                else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
-
-        // southeast
-        for(var i = 1; i < game.ptw; i++) {
-            if(counter>=game.ptw)
-                return true;
-            if(isInBounds(x+i,y-i)) {
-                if(board[x+i][y-i] == game.player) {
-                    counter++;
-                    continue;
-                }
-                else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-
-        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
-    }
-    function checkDiagonalNESW(x,y) {
-        var counter = 1;
-        // southwest
-        for(var i = 1; i < game.ptw; i++) {
-            if(isInBounds(x-i,y-i)) {
-                if(board[x-i][y-i] == game.player) {
-                    counter++;
-                    continue;
-                }
-                else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
-
-        // northeast
-        for(var i = 1; i < game.ptw; i++) {
-            if(isInBounds(x+i,y+i)) {
-                if(board[x+i][y+i] == game.player) {
-                    counter++;
-                    continue;
-                }
-                else {
-                    break;
-                }
-            }
-        }
-        if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
-
-    }
-    return false;
 }
 
+c4.checkRange = function (x, y) {
+
+    var counter = 1;
+
+    for(var i = 1; i < game.ptw; i++) {
+        if(eval("isInBounds("+directions[1].evalString+")")) {
+            if(eval(directions[0].boardEval) == game.player) {
+                counter++;
+                continue;
+            }
+            else {
+                break;
+            }
+        }
+    }
+    if(counter>=game.ptw) { console.log("win recorded at " + x + ", " + y); return true; }
+
+
+}
 // Check that reference cell of the board exists
 function isInBounds(x, y) {
     try {
@@ -230,3 +110,44 @@ c4.reset = function() {
     c4.moves = 0;
     c4.init();
 }
+
+c4.directions = [];
+
+// north+ south- east+ west-
+var directions = [];
+var v = {};
+v.evalString = "x, y-i";
+v.boardEval = "board[x][y-i]";
+c4.directions["v"] = v; 
+
+
+var he = {};
+he.evalString = "x+i, y";
+he.boardEval = "board[x+i][y]";
+c4.directions["he"] = he;
+
+var hw = {};
+hw.evalString = "x-i, y";
+hw.boardEval = "board[x-i][y]";
+c4.directions["hw"] = hw;
+
+var ne = {};
+ne.evalString = "x+i, y+i";
+ne.boardEval = "board[x+i][y+i]";
+c4.directions["ne"] = ne;
+
+var nw = {};
+nw.evalString = "x+i, y-i";
+nw.boardEval = "board[x+i][y-i]";
+c4.directions["nw"] = nw;
+
+
+var sw = {};
+sw.evalString = "x-i, y-i";
+sw.boardEval = "board[x-i][y-i]";
+c4.directions["sw"] = sw;
+
+var se = {};
+se.evalString = "x-i, y+i";
+se.boardEval = "board[x-i][y+i]";
+c4.directions["se"] = se;
