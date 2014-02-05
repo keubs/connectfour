@@ -72,3 +72,9 @@ a.square.blue {
 #player {
   text-transform: capitalize;
 }
+
+#gamestart,
+#chip,
+#tada {
+  display: none;
+}

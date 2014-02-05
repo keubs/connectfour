@@ -74,11 +74,21 @@
       <div class="c4row six"><a class="square" href="#"></a></div>
     </div>
   </div>
+  <audio id="chip" controls>
+    <source src="audio/connect_4_playing_disc_place_in_frame_version_1.mp3" type="audio/mpeg" />
+  </audio>
+  <audio id="gamestart" controls>
+    <source src="audio/connect_4_playing_discs_pick_out_of_box_version_2.mp3" type="audio/mpeg" />
+  </audio>
+<audio id="tada" controls>
+  <source src="audio/tada.mp3" type="audio/mpeg" />
+</audio>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
     c4.interact();
+    document.getElementById("gamestart").play();
   });
 </script>
 </body>

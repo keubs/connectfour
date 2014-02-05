@@ -19,19 +19,7 @@ c4.interact = function(){
     c4.init();
     var $column = $('.column');
 
-    var index;
-    $column.bind('click', function(e){
-        e.preventDefault();
-        index = $(this).index();
-
-        var square = c4.dropChip(board, index);
-        // @todo move to a function: update labels
-        if(square !== undefined){
-            c4.renderChip(index, square, game.player);
-            c4.scanBoard(index, square, game.player);
-        }
-
-    });
+    c4.chipActions($column);
 }
 
 c4.dropChip = function(board, index) {
@@ -59,8 +47,8 @@ c4.scanBoard = function(x, y, player){
     move = c4.checkRange(x, y);
 
     if(move) {
-        console.log("win is by player " + game.player)
-        c4.showWinMessage(player);
+        console.log("win is by player " + game.player);
+        c4.win();
     } else {
         c4.playerToggle();
         c4.updateLabels();
@@ -71,7 +59,6 @@ c4.checkRange = function (x, y) {
 
 
     // north+ south- east+ west-
-    var directions = [];
     var v = {};
     v.evalString = "x, y-i";
     v.boardEval = "board[x][y-i]";
@@ -158,4 +145,9 @@ c4.reset = function() {
 
     c4.moves = 0;
     c4.init();
+}
+
+c4.win = function (){
+    c4.showWinMessage(game.player);
+    document.getElementById('tada').play();
 }
