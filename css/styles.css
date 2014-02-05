@@ -7,11 +7,11 @@ h1,h2,h3 {
   height: 600px;
   border: 2px solid black;
   margin: 0 auto;
+  background: yellow;
 }
 
 .column {
-  width: 97px;
-  border-right: solid 3px black;
+  width: 100px;
   height: 600px;
   float: left;
   position: relative;
@@ -29,6 +29,7 @@ h1,h2,h3 {
 
 .c4row {
   position: absolute;
+  padding: 20px;
 }
 
 .c4row.one {
@@ -52,18 +53,19 @@ h1,h2,h3 {
 
 a.square {
   display: block;
-  width: 99px;
-  border-top: 1px solid black;
-  height: 99px;
+  width: 63px;
+  height: 63px;
+  background: white;
+  border-radius: 40px;
 }
 
-.red {
-  border-radius: 50px;
+a.square.red {
+  border-radius: 40px;
   background: #FF0000;
 }
 
-.blue {
-  border-radius: 50px;
+a.square.blue {
+  border-radius: 40px;
   background: blue;
 }
 

@@ -1,6 +1,6 @@
 c4.renderChip = function(col, row, player){
     var column = $('.column')[col];
-    var row = $(column).find('.c4row')[row];
+    var row = $(column).find('.c4row a')[row];
     $(row).addClass(c4.convertValue(player));
 }
 
