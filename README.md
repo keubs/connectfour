@@ -11,3 +11,9 @@ Available in connectfour.test.js, below are the self-explanatory functions
 * c4t.verticalTest()
 * c4t.diagonalTestNESW()
 * c4t.diagonalTestNWSE()
+
+TODO
+-----------
+* Get the game's logic out of the globals.
+* Make blue legs
+* Profit
