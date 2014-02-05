@@ -2,84 +2,80 @@
 <title> Connect Four </title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="css/styles.css" />
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 
-  <script type="text/javascript" src="js/connectfour.js"></script>
-  <script type="text/javascript" src="js/connectfour.ui.js"></script>
-  <script type="text/javascript" src="js/connectfour.test.js"></script>
-
-
-
+<script type="text/javascript" src="js/connectfour.js"></script>
+<script type="text/javascript" src="js/connectfour.ui.js"></script>
+<script type="text/javascript" src="js/connectfour.test.js"></script>
 </head>
 <body>
-
-<h1>Connect Four</h1>
-  <h2 id="playerlabel"><span id="player">Red</span>, your move</h2>
-  <h3><span id="moves">0</span> moves</h3>
-  <div id="board">
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
-    <div class="column last">
-      <div class="c4row one"><a class="square" href="#"></a></div>
-      <div class="c4row two"><a class="square" href="#"></a></div>
-      <div class="c4row three"><a class="square" href="#"></a></div>
-      <div class="c4row four"><a class="square" href="#"></a></div>
-      <div class="c4row five"><a class="square" href="#"></a></div>
-      <div class="c4row six"><a class="square" href="#"></a></div>
-    </div>
+<h1 id="title">Connect Four</h1>
+<h2 id="playerlabel"><span id="player">Red</span>, your move</h2>
+<h3><span id="moves">0</span> moves</h3>
+<div id="board">
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
   </div>
-  <audio id="chip" controls>
-    <source src="audio/connect_4_playing_disc_place_in_frame_version_1.mp3" type="audio/mpeg" />
-  </audio>
-  <audio id="gamestart" controls>
-    <source src="audio/connect_4_playing_discs_pick_out_of_box_version_2.mp3" type="audio/mpeg" />
-  </audio>
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+  <div class="column">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+  <div class="column last">
+    <div class="c4row one"><a class="square" href="#"></a></div>
+    <div class="c4row two"><a class="square" href="#"></a></div>
+    <div class="c4row three"><a class="square" href="#"></a></div>
+    <div class="c4row four"><a class="square" href="#"></a></div>
+    <div class="c4row five"><a class="square" href="#"></a></div>
+    <div class="c4row six"><a class="square" href="#"></a></div>
+  </div>
+</div>
+<audio id="chip" controls>
+  <source src="audio/connect_4_playing_disc_place_in_frame_version_1.mp3" type="audio/mpeg" />
+</audio>
+<audio id="gamestart" controls>
+  <source src="audio/connect_4_playing_discs_pick_out_of_box_version_2.mp3" type="audio/mpeg" />
+</audio>
 <audio id="tada" controls>
   <source src="audio/tada.mp3" type="audio/mpeg" />
 </audio>

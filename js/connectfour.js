@@ -150,4 +150,8 @@ c4.reset = function() {
 c4.win = function (){
     c4.showWinMessage(game.player);
     document.getElementById('tada').play();
+    $('#title').html('Connect Four <a href="#">(reset)</a>');
+    $('#title a').click(function(){
+        location.reload();
+    })
 }

@@ -69,7 +69,8 @@ a.square.blue {
   background: blue;
 }
 
-#player {
+#player,
+#playerlabel {
   text-transform: capitalize;
 }
 
