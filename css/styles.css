@@ -3,7 +3,7 @@ h1,h2,h3 {
 }
 
 #board {
-  width: 730px;
+  width: 704px;
   height: 600px;
   border: 2px solid black;
   margin: 0 auto;
@@ -15,6 +15,7 @@ h1,h2,h3 {
   height: 600px;
   float: left;
   position: relative;
+  padding: 0 !important;
 }
 
 .column:hover {
